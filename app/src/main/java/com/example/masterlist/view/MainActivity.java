@@ -1,7 +1,8 @@
-package com.example.masterlist;
+package com.example.masterlist.view;
 
 import android.os.Bundle;
 
+import com.example.masterlist.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;

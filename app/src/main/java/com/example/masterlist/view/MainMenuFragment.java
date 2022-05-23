@@ -1,5 +1,6 @@
-package com.example.masterlist;
+package com.example.masterlist.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.masterlist.R;
 import com.example.masterlist.databinding.FragmentMainMenuBinding;
 
 public class MainMenuFragment extends Fragment {
@@ -29,15 +31,13 @@ public class MainMenuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.btnHandleMasterLists.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(MainMenuFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
+        binding.btnHandleMasterLists.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), HandleMasterListsActivity.class);
+            getActivity().startActivity(intent);
         });
 
-
+        binding.btnCreateErrandList.setOnClickListener(v -> NavHostFragment.findNavController(MainMenuFragment.this)
+                .navigate(R.id.action_FirstFragment_to_SecondFragment));
     }
 
     @Override
