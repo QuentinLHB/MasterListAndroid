@@ -19,12 +19,27 @@
             android:clickable="true"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtListName"
+            <ViewSwitcher
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/swcEditListName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="TextView" />
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtListName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
+                    android:onClick="TextViewClicked"
+                    android:text="placeholder" />
+
+                <EditText
+                    android:id="@+id/edtEditListName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/some_value" />
+            </ViewSwitcher>
 
             <TextView
                 android:id="@+id/txtListDesc"

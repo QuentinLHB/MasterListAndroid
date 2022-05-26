@@ -1,6 +1,12 @@
 package com.example.masterlist.model;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -8,10 +14,14 @@ public class ErrandList {
 
 
     private String name;
+    private LocalDate lastModification;
     private final List<ErrandItem> items = new ArrayList<>();
 
-    public ErrandList(String name) {
+
+    public ErrandList(String name, LocalDate lastModification) {
         this.name = name;
+        this.lastModification = lastModification;
+
     }
 
 
@@ -20,6 +30,7 @@ public class ErrandList {
     }
 
     public void setName(String name) {
+        updateModificationDate();
         this.name = name;
     }
 
@@ -39,7 +50,6 @@ public class ErrandList {
 //    }
 
 
-
     /**
      * Adds an item to the errand list.
      *
@@ -49,6 +59,7 @@ public class ErrandList {
     public boolean addItem(ErrandItem item) {
         if (!items.contains(item)) {
             items.add(item);
+            updateModificationDate();
             return true;
         }
         return false;
@@ -61,25 +72,40 @@ public class ErrandList {
      * @return True if the removal succeeded, else false.
      */
     public boolean removeItem(ErrandItem item) {
-        return items.remove(item);
-    }
-
-    public void editItemQuantity(ErrandItem item, int newQuantity) {
-        if (items.contains(item)) {
-            item.setQuantity(newQuantity);
-        }
-    }
-
-    public boolean editItemName(ErrandItem item, String newName) {
-        if (items.contains(item)) {
-            item.setName(newName);
+        if (items.remove(item)){
+            updateModificationDate();
             return true;
         }
         return false;
     }
 
+    public boolean editItemQuantity(ErrandItem item, int newQuantity) {
+        if (items.contains(item)) {
+            item.setQuantity(newQuantity);
+            updateModificationDate();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean editItemName(ErrandItem item, String newName) {
+        if (items.contains(item)) {
+            item.setName(newName);
+            updateModificationDate();
+            return true;
+        }
+        return false;
+    }
+
+    private void updateModificationDate() {
+        lastModification = LocalDate.now();
+    }
+
+
     @Override
     public String toString() {
-        return String.format(Locale.FRANCE, "%s : %d objets", name, size());
+        return String.format(Locale.FRANCE, "%s : %d objets", lastModification.toString(), size());
     }
+
+
 }

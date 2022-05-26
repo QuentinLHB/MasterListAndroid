@@ -2,12 +2,14 @@ package com.example.masterlist.controller;
 
 import com.example.masterlist.model.ErrandList;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
 
     private static Controller instance = null;
+    List<ErrandList> errandLists = new ArrayList<>();
 
     /**
      * Private constructor
@@ -30,8 +32,17 @@ public class Controller {
 
     public List<ErrandList> getMasterLists(){
         //todo
-        List<ErrandList> errandLists = new ArrayList<>();
-        errandLists.add(new ErrandList("Super U"));
+        if(errandLists.isEmpty()){
+            errandLists.add(new ErrandList("Super U", LocalDate.now()));
+            errandLists.add(new ErrandList("BBG", LocalDate.now()));
+        }
+        else return  errandLists;
+
+
         return errandLists;
+    }
+
+    public void editMasterListName(ErrandList masterList, String newName){
+        masterList.setName(newName);
     }
 }

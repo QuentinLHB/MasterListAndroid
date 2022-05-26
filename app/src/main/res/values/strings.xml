@@ -9,4 +9,5 @@
 
     <string name="menu_main_title">Menu Principal :</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="some_value">Titre</string>
 </resources>
