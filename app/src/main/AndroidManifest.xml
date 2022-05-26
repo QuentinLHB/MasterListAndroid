@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MasterList">
         <activity
+            android:name=".view.MasterListContent"
+            android:exported="false" />
+        <activity
             android:name=".view.HandleMasterListsActivity"
             android:exported="false" />
         <activity
