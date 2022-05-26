@@ -9,7 +9,7 @@ import java.util.List;
 public class Controller {
 
     private static Controller instance = null;
-    List<ErrandList> errandLists = new ArrayList<>();
+    List<ErrandList> masterLists = new ArrayList<>();
 
     /**
      * Private constructor
@@ -32,17 +32,26 @@ public class Controller {
 
     public List<ErrandList> getMasterLists(){
         //todo
-        if(errandLists.isEmpty()){
-            errandLists.add(new ErrandList("Super U", LocalDate.now()));
-            errandLists.add(new ErrandList("BBG", LocalDate.now()));
+        if(masterLists.isEmpty()){
+            masterLists.add(new ErrandList("Super U", LocalDate.now()));
+            masterLists.add(new ErrandList("BBG", LocalDate.now()));
         }
-        else return  errandLists;
+        else return masterLists;
 
 
-        return errandLists;
+        return masterLists;
     }
 
-    public void editMasterListName(ErrandList masterList, String newName){
+    public boolean editMasterListName(ErrandList masterList, String newName){
+        if(newName.isEmpty()) return false;
         masterList.setName(newName);
+        return true;
+    }
+
+    public boolean removeMasterList(ErrandList masterList){
+        if(masterLists.remove(masterList)){
+            return true;
+        }
+        return false;
     }
 }
