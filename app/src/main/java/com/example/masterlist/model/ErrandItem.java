@@ -3,10 +3,8 @@ package com.example.masterlist.model;
 public class ErrandItem {
 
 
-    //    private int id;
+    private int id;
     private String name = "";
-
-
     private int quantity = 1;
     private boolean isQuantifiable = true;
 

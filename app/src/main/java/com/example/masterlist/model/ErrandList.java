@@ -12,7 +12,7 @@ import java.util.Locale;
 
 public class ErrandList {
 
-
+    private int id;
     private String name;
     private LocalDate lastModification;
     private final List<ErrandItem> items = new ArrayList<>();
