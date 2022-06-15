@@ -23,7 +23,7 @@ public class HandleMasterListsActivity extends AppCompatActivity {
     }
 
     private void init(){
-        this.controller = Controller.getInstance();
+        this.controller = Controller.getInstance(HandleMasterListsActivity.this);
         masterLists = controller.getMasterLists();
         ListView lstMasterLists = findViewById(R.id.lstMasterLists);
         lstMasterLists.setAdapter(new MasterListsLayoutAdapter(masterLists, HandleMasterListsActivity.this));

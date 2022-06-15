@@ -52,7 +52,7 @@ public class MasterListsLayoutAdapter extends BaseAdapter {
      * @param context Context.
      */
     public MasterListsLayoutAdapter(List<ErrandList> masterLists, Context context) {
-        controller = Controller.getInstance();
+        controller = Controller.getInstance(context);
         this.masterList = masterLists;
         this.context = context;
         this.inflater = LayoutInflater.from(context);

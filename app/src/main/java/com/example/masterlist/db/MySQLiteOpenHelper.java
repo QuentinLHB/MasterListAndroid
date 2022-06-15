@@ -18,11 +18,11 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
             "name TEXT," +
             "isQuantifiable INTEGER); ";
 
-    private String creationMasterListItems = "create table " + getErrandListItemTableName() + "(" +
-            "idErrandList INTEGER, " +
-            "idItem INTEGER, " +
-            "FOREIGN KEY(idErrandList) REFERENCES errandlist(id)," +
-            "FOREIGN KEY(idItem) REFERENCES erranditem(id)); ";
+//    private String creationMasterListItems = "create table " + getErrandListItemTableName() + "(" +
+//            "idErrandList INTEGER, " +
+//            "idItem INTEGER, " +
+//            "FOREIGN KEY(idErrandList) REFERENCES errandlist(id)," +
+//            "FOREIGN KEY(idItem) REFERENCES erranditem(id)); ";
 
     private String creationErrandListItems = "create table " + getErrandListItemTableName() + "(" +
             "idErrandList INTEGER, " +
@@ -57,7 +57,10 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(creationErrandList + creationErrandItem + creationMasterListItems + creationErrandListItems);
+        db.execSQL(creationErrandList);
+        db.execSQL(creationErrandItem);
+        db.execSQL(creationErrandListItems);
+
     }
 
     /**

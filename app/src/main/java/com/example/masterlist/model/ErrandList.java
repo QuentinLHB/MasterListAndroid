@@ -5,6 +5,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,16 +14,31 @@ import java.util.Locale;
 
 public class ErrandList {
 
+    public int getId() {
+        return id;
+    }
+
+    public boolean isMaster() {
+        return isMaster;
+    }
+
     private int id;
     private String name;
-    private LocalDate lastModification;
+    private LocalDateTime lastModification;
+    private boolean isMaster = false;
     private final List<ErrandItem> items = new ArrayList<>();
 
 
-    public ErrandList(String name, LocalDate lastModification) {
+    public ErrandList(String name, LocalDateTime lastModification) {
         this.name = name;
         this.lastModification = lastModification;
 
+    }
+
+    public ErrandList(int id, String name, LocalDateTime lastModification, boolean isMaster) {
+        this(name, lastModification);
+        this.id = id;
+        this.isMaster = isMaster;
     }
 
 
@@ -98,13 +115,13 @@ public class ErrandList {
     }
 
     private void updateModificationDate() {
-        lastModification = LocalDate.now();
+        lastModification = LocalDateTime.now();
     }
 
 
     @Override
     public String toString() {
-        return String.format(Locale.FRANCE, "%s : %d objets", lastModification.toString(), size());
+        return String.format(Locale.FRANCE, "%s : %d objets", "modifié le " +  lastModification.format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'à' HH:mm")), size());
     }
 
 
